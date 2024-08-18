@@ -101,7 +101,7 @@ val_loss = history.history['val_loss']
 #epochs
 epochs_range = range(epochs)
 
-#Plotting graphs
+# Plotting graphs
 plt.figure(figsize=(8, 8))
 plt.subplot(1, 2, 1)
 plt.plot(epochs_range, acc, label='Training Accuracy')
@@ -149,7 +149,8 @@ for filename in listdir(path):
         y1 = y1 + 120
         y2 = y2 + 120
 df = pd.DataFrame(predicted_data)
-df.ID = df.ID.astype(float)
-df.sort_values("ID", key=pd.to_numeric)
+df['ID'] = pd.to_numeric(df['ID'])
+df = df.sort_values("ID")
+print(df)
 df.to_csv('submission.csv', index=False)
 
